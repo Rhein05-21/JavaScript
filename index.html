@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IP Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .ip-box {
+      margin-top: 30px;
+      padding: 20px;
+      display: inline-block;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .ip {
+      font-size: 24px;
+      color: #2980b9;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to IP Checker</h1>
+  <p>This tool shows your current public IP address:</p>
+
+  <div class="ip-box">
+    <p>Your IP Address:</p>
+    <p class="ip" id="ip">Loading...</p>
+  </div>
+
+  <footer>
+    &copy; 2025 IP Checker. All rights reserved.
+  </footer>
+
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip;
+      })
+      .catch(() => {
+        document.getElementById('ip').textContent = "Unable to fetch IP.";
+      });
+  </script>
+</body>
+</html>
